@@ -6,7 +6,7 @@
 
 ## Présentation
 
-Ce projet simule un réseau d'entreprise professionnel sous **Cisco Packet Tracer **.
+Ce projet simule un réseau d'entreprise professionnel sous Cisco Packet Tracer.
 Il couvre l'ensemble des technologies utilisées en production : routage dynamique, haute disponibilité,
 segmentation par VLANs, sécurité couche 2 et 3, et interconnexion de sites distants via VPN.
 
