@@ -224,5 +224,5 @@ reseau-entreprise-packet-tracer/
 
 ## Auteur
 
-Projet réalisé dans le cadre d'un **stage Réseaux**
+Projet réalisé par SAIH PIELY URIEL LOIC ING 2 INFORMATIQUE à l'INPHB 
 Simulation Cisco Packet Tracer — Architecture entreprise complète
