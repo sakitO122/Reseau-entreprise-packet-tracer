@@ -6,7 +6,7 @@
 
 ## Présentation
 
-Ce projet simule un réseau d'entreprise professionnel sous **Cisco Packet Tracer **.
+Ce projet simule un réseau d'entreprise professionnel sous **Cisco Packet Tracer 8.2+**.
 Il couvre l'ensemble des technologies utilisées en production : routage dynamique, haute disponibilité,
 segmentation par VLANs, sécurité couche 2 et 3, et interconnexion de sites distants via VPN.
 
@@ -95,14 +95,14 @@ segmentation par VLANs, sécurité couche 2 et 3, et interconnexion de sites dis
 - `passive-interface` sur tous les SVIs hôtes
 
 ### Haute disponibilité
-- **HSRP** Active/Standby -failover < 4 secondes (timers 1s/3s)
-- **EtherChannel LACP** Po1 -agrégation 2x GigE = 2 Gbps entre Core switches
+- **HSRP** Active/Standby — failover < 4 secondes (timers 1s/3s)
+- **EtherChannel LACP** Po1 — agrégation 2x GigE = 2 Gbps entre Core switches
 - Preempt activé sur SW-Core-A (priorité 110 vs 100)
 
 ### Sécurité couche 2
-- **Port Security** sticky - max 2 MACs, violation restrict
-- **DHCP Snooping** -filtre serveurs DHCP non autorisés
-- **DAI** (Dynamic ARP Inspection) -anti ARP spoofing / MITM
+- **Port Security** sticky — max 2 MACs, violation restrict
+- **DHCP Snooping** — filtre serveurs DHCP non autorisés
+- **DAI** (Dynamic ARP Inspection) — anti ARP spoofing / MITM
 - **STP PortFast + BPDUGuard** sur tous les ports Access
 
 ### Sécurité couche 3 — ACL inter-VLAN
@@ -123,7 +123,7 @@ segmentation par VLANs, sécurité couche 2 et 3, et interconnexion de sites dis
 
 ### Services réseau
 - **DHCP** centralisé sur Serveur-2 avec `ip helper-address` par VLAN
-- **DNS** interne - résolution `entreprise.local`
+- **DNS** interne — résolution `entreprise.local`
 - **NAT overload (PAT)** pour accès Internet depuis tous les VLANs
 - **SSH** restreint au VLAN 99 via ACL-SSH-MGMT
 
@@ -179,23 +179,23 @@ reseau-entreprise-packet-tracer/
 
 | Test | Commande | Résultat |
 |------|---------|---------|
-| Connectivité R0 ↔ Core-A | `ping 10.0.0.2` |  100% |
-| Connectivité R0 ↔ Core-B | `ping 10.0.1.2` |  100% |
-| Connectivité R0 ↔ Branch | `ping 172.16.0.1` |  100% |
-| Tunnel GRE | `ping 192.168.100.2` |  100% |
-| OSPF convergence | `show ip ospf neighbor` |  FULL/DR |
-| OSPF load balancing | `show ip route ospf` |  dual path |
-| HSRP Core-A Active | `show standby brief` |  Active prio 110 |
-| HSRP failover | Extinction Core-A |  < 4 secondes |
-| EtherChannel Po1 | `show etherchannel summary` |  SU — 2 ports P |
-| DHCP VLAN 10 | PC Direction → DHCP |  10.0.10.10x |
-| DHCP VLAN 20 | PC Dev → DHCP | 10.0.20.10x |
-| DHCP VLAN 30 | PC RH → DHCP |  10.0.30.10x |
-| ACL RH bloque Dev | ping 10.0.20.1 depuis RH |  Bloqué |
-| ACL Dev bloque Direction | ping 10.0.10.1 depuis Dev | Bloqué |
-| SSH depuis VLAN 99 | ssh admin@10.0.99.2 | Autorisé |
-| SSH depuis VLAN 10 | ssh admin@10.0.99.2 |  Refusé |
-| Port Security | show port-security |  Actif sticky |
+| Connectivité R0 ↔ Core-A | `ping 10.0.0.2` | ✅ 100% |
+| Connectivité R0 ↔ Core-B | `ping 10.0.1.2` | ✅ 100% |
+| Connectivité R0 ↔ Branch | `ping 172.16.0.1` | ✅ 100% |
+| Tunnel GRE | `ping 192.168.100.2` | ✅ 100% |
+| OSPF convergence | `show ip ospf neighbor` | ✅ FULL/DR |
+| OSPF load balancing | `show ip route ospf` | ✅ dual path |
+| HSRP Core-A Active | `show standby brief` | ✅ Active prio 110 |
+| HSRP failover | Extinction Core-A | ✅ < 4 secondes |
+| EtherChannel Po1 | `show etherchannel summary` | ✅ SU — 2 ports P |
+| DHCP VLAN 10 | PC Direction → DHCP | ✅ 10.0.10.10x |
+| DHCP VLAN 20 | PC Dev → DHCP | ✅ 10.0.20.10x |
+| DHCP VLAN 30 | PC RH → DHCP | ✅ 10.0.30.10x |
+| ACL RH bloque Dev | ping 10.0.20.1 depuis RH | ✅ Bloqué |
+| ACL Dev bloque Direction | ping 10.0.10.1 depuis Dev | ✅ Bloqué |
+| SSH depuis VLAN 99 | ssh admin@10.0.99.2 | ✅ Autorisé |
+| SSH depuis VLAN 10 | ssh admin@10.0.99.2 | ✅ Refusé |
+| Port Security | show port-security | ✅ Actif sticky |
 
 ---
 
@@ -209,21 +209,20 @@ reseau-entreprise-packet-tracer/
 
 ## Ordre de déploiement recommandé
 
-1. ISP - interfaces + routes statiques
-2. R0-HQ - interfaces, OSPF, NAT, GRE, IPSec
-3. SW-Core-A - VLANs, SVIs, HSRP Active, EtherChannel, OSPF, ACL
-4. SW-Core-B - VLANs, SVIs, HSRP Standby, EtherChannel, OSPF
-5. SW-A1 à SW-A4 - VLANs, Port Security, DHCP Snooping, DAI
-6. SW-MGMT - VLAN 99, trunk vers Core-B
-7. Serveur-2 - pools DHCP (VLAN 10/20/30/99), DNS, HTTP
-8. R-Branch - interfaces, OSPF, GRE, IPSec
-9. SW-Branch - configuration basique
-10. PCs - DHCP automatique / statique pour serveurs
+1. ISP — interfaces + routes statiques
+2. R0-HQ — interfaces, OSPF, NAT, GRE, IPSec
+3. SW-Core-A — VLANs, SVIs, HSRP Active, EtherChannel, OSPF, ACL
+4. SW-Core-B — VLANs, SVIs, HSRP Standby, EtherChannel, OSPF
+5. SW-A1 à SW-A4 — VLANs, Port Security, DHCP Snooping, DAI
+6. SW-MGMT — VLAN 99, trunk vers Core-B
+7. Serveur-2 — pools DHCP (VLAN 10/20/30/99), DNS, HTTP
+8. R-Branch — interfaces, OSPF, GRE, IPSec
+9. SW-Branch — configuration basique
+10. PCs — DHCP automatique / statique pour serveurs
 
 ---
 
 ## Auteur
 
-Projet réalisé par SAIH PIELY URIEL LOIC 
-Simulation Cisco Packet Tracer — Architecture entreprise complète#   R e s e a u - e n t r e p r i s e - p a c k e t - t r a c e r  
- 
+Projet réalisé dans le cadre d'un **stage Réseaux**
+Simulation Cisco Packet Tracer — Architecture entreprise complète
