@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Présentation du Projet Réseau</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 700px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .back {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back a {
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid #333;
+      color: #333;
+      border-radius: 6px;
+    }
+
+    .back a:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Présentation du Projet</h1>
+
+    <p>
+      Ce projet consiste à concevoir et simuler un réseau d’entreprise complet et sécurisé en utilisant Cisco Packet Tracer.
+      Il met en œuvre des technologies avancées de routage, de segmentation et de sécurité.
+    </p>
+
+    <h2>Objectifs</h2>
+    <ul>
+      <li>Mettre en place un réseau d’entreprise structuré</li>
+      <li>Segmenter le réseau à l’aide de VLAN</li>
+      <li>Assurer la communication inter-VLAN</li>
+      <li>Garantir la haute disponibilité avec HSRP</li>
+      <li>Sécuriser les échanges avec ACL et VPN</li>
+    </ul>
+
+    <h2>Architecture du réseau</h2>
+    <p>
+      Le réseau repose sur une architecture hiérarchique à trois couches :
+      Core, Distribution et Access. Chaque service est isolé dans un VLAN spécifique
+      afin d'améliorer la sécurité et les performances.
+    </p>
+
+    <ul>
+      <li>VLAN 10 : Direction</li>
+      <li>VLAN 20 : Développement</li>
+      <li>VLAN 30 : RH</li>
+      <li>VLAN 40 : Serveurs</li>
+      <li>VLAN 99 : Management</li>
+    </ul>
+
+    <h2>Topologie du réseau</h2>
+
+    <img src="screenshots\topologie_generale.png" alt="Topologie réseau">
+
+    <p style="text-align:center;">
+    </p>
+
+    <h2>Technologies utilisées</h2>
+    <ul>
+      <li>VLAN (segmentation réseau)</li>
+      <li>OSPF (routage dynamique)</li>
+      <li>HSRP (haute disponibilité)</li>
+      <li>ACL (contrôle d'accès)</li>
+      <li>NAT (accès Internet)</li>
+      <li>VPN (connexion sécurisée inter-sites)</li>
+    </ul>
+
+    <h2>Résultats</h2>
+    <ul>
+      <li>Communication contrôlée entre les services</li>
+      <li>Réseau sécurisé et segmenté</li>
+      <li>Haute disponibilité fonctionnelle</li>
+      <li>Accès Internet opérationnel</li>
+    </ul>
+
+    <div class="back">
+      <a href="index.html">Retour à l'accueil</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

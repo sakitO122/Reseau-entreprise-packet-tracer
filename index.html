@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Projet Réseau d’Entreprise</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 2em;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.1em;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      text-decoration: none;
+      padding: 12px 25px;
+      border: 1px solid #333;
+      color: #333;
+      border-radius: 6px;
+      transition: transform 0.3s;
+    }
+
+    .links a:hover {
+      transform: translateY(-2px);
+    }
+
+    .salutation {
+      margin-top: 30px;
+      font-style: italic;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      .links {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Simulation Réseau d’Entreprise</h1>
+
+    <p>
+      Ce projet présente la conception et la simulation d’un réseau d’entreprise sécurisé avec VLAN, routage OSPF, HSRP, NAT et VPN. 
+      Il met en avant des compétences en architecture réseau, sécurité et administration Cisco.
+    </p>
+
+    <div class="links">
+      <a href="presentation.html">Présentation du projet</a>
+      <a href="https://github.com/ton-repo" target="_blank">Dépôt GitHub</a>
+    </div>
+
+    <p class="salutation">
+      Merci pour votre attention .
+    </p>
+  </div>
+
+</body>
+</html>

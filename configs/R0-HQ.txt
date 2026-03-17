@@ -1,0 +1,147 @@
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX1524LA57-
+license boot module c2900 technology-package securityk9
+!
+!
+!
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 2
+!
+crypto isakmp key SecretVPN address 200.0.0.2
+!
+!
+!
+crypto ipsec transform-set TS-AES esp-aes esp-sha-hmac
+!
+crypto map VPN-MAP 10 ipsec-isakmp 
+ set peer 203.0.113.2
+ set peer 200.0.0.2
+ set transform-set TS-AES 
+ match address ACL-VPN
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+ ip ospf 1 area 0
+!
+interface Tunnel0
+ ip address 192.168.100.1 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/0
+ tunnel destination 200.0.0.2
+!
+!
+interface GigabitEthernet0/0
+ description WAN-Internet
+ ip address 203.0.113.1 255.255.255.0
+ ip nat outside
+ duplex auto
+ speed auto
+ crypto map VPN-MAP
+!
+interface GigabitEthernet0/1
+ description vers-SW-Core-A
+ ip address 10.0.0.1 255.255.255.252
+ ip ospf hello-interval 1
+ ip ospf dead-interval 3
+ ip ospf 1 area 0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ description vers-SW-Core-B
+ ip address 10.0.1.1 255.255.255.252
+ ip ospf hello-interval 1
+ ip ospf dead-interval 3
+ ip ospf 1 area 0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface Serial0/2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/2/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/3/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0
+ network 10.0.1.0 0.0.0.3 area 0
+ network 1.1.1.1 0.0.0.0 area 0
+ default-information originate
+!
+ip nat inside source list ACL-NAT interface GigabitEthernet0/0 overload
+ip classless
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/0 
+ip route 203.0.113.2 255.255.255.255 203.0.113.254 
+ip route 200.0.0.0 255.255.255.0 203.0.113.254 
+ip route 172.16.0.0 255.255.255.0 192.168.100.2 
+!
+ip flow-export version 9
+!
+!
+ip access-list standard ACL-NAT
+ permit 10.0.10.0 0.0.0.255
+ permit 10.0.20.0 0.0.0.255
+ permit 10.0.30.0 0.0.0.255
+ permit 10.0.40.0 0.0.0.255
+ip access-list extended ACL-VPN
+ permit gre host 203.0.113.1 host 200.0.0.2
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
