@@ -179,23 +179,23 @@ reseau-entreprise-packet-tracer/
 
 | Test | Commande | Résultat |
 |------|---------|---------|
-| Connectivité R0 ↔ Core-A | `ping 10.0.0.2` | ✅ 100% |
-| Connectivité R0 ↔ Core-B | `ping 10.0.1.2` | ✅ 100% |
-| Connectivité R0 ↔ Branch | `ping 172.16.0.1` | ✅ 100% |
-| Tunnel GRE | `ping 192.168.100.2` | ✅ 100% |
-| OSPF convergence | `show ip ospf neighbor` | ✅ FULL/DR |
-| OSPF load balancing | `show ip route ospf` | ✅ dual path |
-| HSRP Core-A Active | `show standby brief` | ✅ Active prio 110 |
-| HSRP failover | Extinction Core-A | ✅ < 4 secondes |
-| EtherChannel Po1 | `show etherchannel summary` | ✅ SU — 2 ports P |
-| DHCP VLAN 10 | PC Direction → DHCP | ✅ 10.0.10.10x |
-| DHCP VLAN 20 | PC Dev → DHCP | ✅ 10.0.20.10x |
-| DHCP VLAN 30 | PC RH → DHCP | ✅ 10.0.30.10x |
-| ACL RH bloque Dev | ping 10.0.20.1 depuis RH | ✅ Bloqué |
-| ACL Dev bloque Direction | ping 10.0.10.1 depuis Dev | ✅ Bloqué |
-| SSH depuis VLAN 99 | ssh admin@10.0.99.2 | ✅ Autorisé |
-| SSH depuis VLAN 10 | ssh admin@10.0.99.2 | ✅ Refusé |
-| Port Security | show port-security | ✅ Actif sticky |
+| Connectivité R0 ↔ Core-A | `ping 10.0.0.2` |  100% |
+| Connectivité R0 ↔ Core-B | `ping 10.0.1.2` |  100% |
+| Connectivité R0 ↔ Branch | `ping 172.16.0.1` |  100% |
+| Tunnel GRE | `ping 192.168.100.2` |  100% |
+| OSPF convergence | `show ip ospf neighbor` |  FULL/DR |
+| OSPF load balancing | `show ip route ospf` |  dual path |
+| HSRP Core-A Active | `show standby brief` |  Active prio 110 |
+| HSRP failover | Extinction Core-A | < 4 secondes |
+| EtherChannel Po1 | `show etherchannel summary` |  SU — 2 ports P |
+| DHCP VLAN 10 | PC Direction → DHCP |  10.0.10.10x |
+| DHCP VLAN 20 | PC Dev → DHCP |  10.0.20.10x |
+| DHCP VLAN 30 | PC RH → DHCP |  10.0.30.10x |
+| ACL RH bloque Dev | ping 10.0.20.1 depuis RH |  Bloqué |
+| ACL Dev bloque Direction | ping 10.0.10.1 depuis Dev |  Bloqué |
+| SSH depuis VLAN 99 | ssh admin@10.0.99.2 | Autorisé |
+| SSH depuis VLAN 10 | ssh admin@10.0.99.2 |  Refusé |
+| Port Security | show port-security | Actif sticky |
 
 ---
 
